@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex flex-col items-center justify-center min-h-screen bg-zinc-100 dark:bg-zinc-800">
+    <div class="bg-white dark:bg-zinc-700 p-4 rounded-lg shadow-md">
+        <input type="text" id="calc-display" class="w-full p-2 mb-2 text-2xl text-right border border-zinc-300 dark:border-zinc-600 rounded-lg" placeholder="0">
+        <div class="grid grid-cols-4 gap-2">
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="7">7</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="8">8</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="9">9</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="/">/</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="4">4</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="5">5</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="6">6</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="*">*</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="1">1</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="2">2</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="3">3</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="-">-</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="0">0</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value=".">.</button>
+            <button class="calc-btn bg-zinc-200 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-200 p-2 rounded-lg" data-value="+">+</button>
+            <button class="calc-btn bg-red-500 dark:bg-red-700 text-white p-2 rounded-lg col-span-2" data-value="AC">AC</button>
+            <button id="calc-equal" class="calc-btn bg-green-500 dark:bg-green-700 text-white p-2 rounded-lg" data-value="=">=</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const display = document.getElementById('calc-display');
+    const buttons = document.querySelectorAll('.calc-btn');
+    let currentInput = '';
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (button.dataset.value === '=') {
+                try {
+                    display.value = eval(currentInput);
+                } catch (error) {
+                    display.value = 'Error';
+                }
+            } else if (button.dataset.value === 'AC') {
+                display.value = '';
+                currentInput = '';
+            } else {
+                currentInput += button.dataset.value;
+                display.value = currentInput;
+            }
+        });
+    });
+</script>
+
+
+  </body>
+</html>
